@@ -7,7 +7,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	
 		<!-- DB연결 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="username" value="user03"/>
