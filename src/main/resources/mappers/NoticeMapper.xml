@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  <!--Mapper 파일 인식  -->
+
+<mapper namespace="NoticeMapper"><!--  현재 파일명     -->
+
+	<sql id="search">
+	<trim prefix="where" prefixOverrides="and || or">
+	<if test="search == 'title'"> title like '%' || #{find} || '%'</if>
+	<if test="search == 'writer'"> writer like '%' || #{find} || '%'</if>
+	<if test="search == 'contents'"> contents like '%' || #{find} || '%'</if>
+	</trim>
+	</sql>
+	
+	<select id="List" parameterType="com.choa.util.ListInfo" resultType="com.choa.notice.NoticeDTO">	
+	select * from (select rownum R, N.* from (select * from notice 
+	<include refid="search" />
+	order by num desc) N) where R between #{startRow} and #{lastRow} 
+	</select>
+	
+	<select id="View" resultType="com.choa.notice.NoticeDTO" parameterType="java.lang.Integer">
+		select * from notice where num=#{num}
+	</select>
+	
+	<insert id="Write" parameterType="com.choa.notice.NoticeDTO" >
+		insert into notice (num, writer, title, contents, reg_date, hit) values (point_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0)
+	</insert>
+	
+	<delete id="Delete" parameterType="java.lang.Integer">
+		delete notice where num=#{num}
+	</delete>
+	
+	<update id="Update" parameterType="com.choa.notice.NoticeDTO">
+		update notice set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<select id="Count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
+		select nvl(count(num), 0) from notice
+		<include refid="search"/>
+	</select>
+	
+</mapper>

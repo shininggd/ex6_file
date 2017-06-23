@@ -9,10 +9,11 @@
 <script type="text/javascript">
 	$(function() {
 		var count = 0;
+
 		$("#add").click(function() {
-			count++;
-			if(count<6){
-				$("#file").append("<p class="+count+"><input type='file' name='f1' ><span class="+count+">x</span> </p>");			
+			if(count<5){
+				count++;
+				$("#file").append("<p><input type='file' name='f"+count+"' ><span class='del'>x</span> </p>");			
 			}else {
 				alert("5개까지만 가능합니다.");
 			}
@@ -20,8 +21,10 @@
 		});
 		
 		
-		$("#file").on("click","."+count, function() {
-			alert("dddd");
+		$("#file").on("click",".del", function() {
+			$(this).parent().remove();
+			count--;
+			
 		});
 	
 	
