@@ -37,7 +37,6 @@ public class NoticeServiceImpl implements BoardService {
 		int totalCount = noticeDAO.boardCount(listInfo);
 		listInfo.makePage(totalCount);
 		listInfo.makeRow();
-		
 		return noticeDAO.boardList(listInfo);
 	}
 	@Override

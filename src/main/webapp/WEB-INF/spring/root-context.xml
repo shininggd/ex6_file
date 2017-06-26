@@ -7,17 +7,24 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"  id="propertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:myBatis/myBatis.properties</value><!-- 프로퍼티 파일의 경로를 집어넣어준다. -->		
+		</property>
+	</bean>
+	
 		<!-- DB연결 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="user03"/>
-		<property name="password" value="user03"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="username" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.pw}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
 	</bean>
 		
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:myBatis/myBatis-config.xml"/>
 	</bean>			
 	 
 	 <!-- mybatis 와 연결  -->
@@ -29,5 +36,6 @@
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
+	<context:component-scan base-package="com.choa.memo"/>
 		
 </beans>

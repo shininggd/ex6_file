@@ -11,17 +11,17 @@
 	</trim>
 	</sql>
 	
-	<select id="List" parameterType="com.choa.util.ListInfo" resultType="com.choa.notice.NoticeDTO">	
+	<select id="List" parameterType="com.choa.util.ListInfo" resultType="NoticeDTO">	
 	select * from (select rownum R, N.* from (select * from notice 
 	<include refid="search" />
 	order by num desc) N) where R between #{startRow} and #{lastRow} 
 	</select>
 	
-	<select id="View" resultType="com.choa.notice.NoticeDTO" parameterType="java.lang.Integer">
+	<select id="View" resultType="NoticeDTO" parameterType="java.lang.Integer">
 		select * from notice where num=#{num}
 	</select>
 	
-	<insert id="Write" parameterType="com.choa.notice.NoticeDTO" >
+	<insert id="Write" parameterType="NoticeDTO" >
 		insert into notice (num, writer, title, contents, reg_date, hit) values (point_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0)
 	</insert>
 	
@@ -29,7 +29,7 @@
 		delete notice where num=#{num}
 	</delete>
 	
-	<update id="Update" parameterType="com.choa.notice.NoticeDTO">
+	<update id="Update" parameterType="NoticeDTO">
 		update notice set title=#{title}, contents=#{contents} where num=#{num}
 	</update>
 	
