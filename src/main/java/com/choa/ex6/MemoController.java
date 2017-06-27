@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import com.choa.memo.MemoDTO;
 import com.choa.memo.MemoService;
@@ -44,6 +44,7 @@ public class MemoController {
 		//데이터를 리턴하면 알아서 제이슨 형식으로 바꿔준다는 의미이다.
 		
 	}
+	
 	@RequestMapping(value="memoWrite", method=RequestMethod.POST)
 	@ResponseBody
 	public List<MemoDTO> memoWrite(MemoDTO memoDTO, Model model)throws Exception{

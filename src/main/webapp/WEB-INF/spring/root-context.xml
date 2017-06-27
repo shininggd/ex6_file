@@ -2,8 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<!-- 핵심로직  -->
+	
+	<!-- 공통 로직 , 객체생성  -->
+	<!-- <bean class="com.choa.aspect.CardCheck" id="cardCheck"/> -->
+	
+	<!-- AOP 설정  -->
+	<!-- <aop:config>
+	전체적인 설정은 그룹단위로 
+		<aop:aspect id="cardAspect" ref="cardCheck">
+		'..' 이 뜻한느 것 : 하위에 모든 디럭테리를 포함 
+		'*()' 하위의 모든 메서드를 포함 
+		(..) 모든 매개변수 포함
+		<aop:pointcut expression="execution(* com.choa.aspect..Transport.*(..))" id="trans"/>
+		<aop:around method="check" pointcut-ref="trans"/>
+		</aop:aspect>
+		
+		<aop:aspect id="cardReseve" ref="cardCheck">
+			<aop:pointcut expression="execution(* com.choa.aspect.Trip.*(..))" id="reserve"/>
+			<aop:before method="reservation" pointcut-ref="reserve"/>		
+		</aop:aspect>
+		
+		
+		
+	</aop:config> -->
+	
+	<!--aop를 어노테이션 방식으로 활용할 경우 아래의 코드를 써준다  -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -37,5 +66,6 @@
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 	<context:component-scan base-package="com.choa.memo"/>
-		
+	
+			
 </beans>

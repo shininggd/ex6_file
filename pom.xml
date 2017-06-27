@@ -24,8 +24,8 @@
 
 
 	<dependencies>
-		
-		
+
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -111,12 +111,37 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx 스프링 
+			트랜잭션 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver   에스팩트 제이 위버-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>
