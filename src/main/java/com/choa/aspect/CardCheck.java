@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 public class CardCheck {
 	
 	
-	@Before("execution(* com.choa.aspect..Trip.*(..)")
+	@Before(" execution(* com.choa.aspect..Trip.*(..))")
+	
 	public void reservation(){
 		System.out.println("예약 완료");
 		System.out.println("==========================");
 	}
 	
-	@Around("execution(* com.choa.aspect..Transport.*(..)")
+	@Around("execution(* com.choa.aspect..Transport.*(..))")
 	public Object check(ProceedingJoinPoint join){
 		System.out.println("삑 in");
 		

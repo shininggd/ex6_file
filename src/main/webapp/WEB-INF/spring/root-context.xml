@@ -31,8 +31,7 @@
 		
 	</aop:config> -->
 	
-	<!--aop를 어노테이션 방식으로 활용할 경우 아래의 코드를 써준다  -->
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
